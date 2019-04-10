@@ -1,22 +1,13 @@
-/* eslint valid-jsdoc: "off" */
-
 'use strict';
 
-/**
- * @param {Egg.EggAppInfo} appInfo app info
- */
 module.exports = appInfo => {
-  /**
-   * built-in config
-   * @type {Egg.EggAppConfig}
-   **/
   const config = {};
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1554829968072_8886';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'errorHandler' ];
 
   // Sequelize
   config.sequelize = {
@@ -30,13 +21,16 @@ module.exports = appInfo => {
     freezeTableName: true,
   };
 
-  // add your user config here
-  const userConfig = {
-    // myAppName: 'egg',
+  // egg-validate
+  config.validate = {
+    convert: true,
   };
 
-  return {
-    ...config,
-    ...userConfig,
+  config.security = {
+    xframe: { enable: false },
+    csrf: { enable: false },
+    domainWhiteList: [ 'http://localhost:8080' ],
   };
+
+  return config;
 };
