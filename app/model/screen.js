@@ -14,5 +14,19 @@ module.exports = app => {
     underscored: false,
   });
 
+  Screen.associate = () => {
+    const { Beer, ScreenBeer } = app.model;
+
+    Screen.belongsToMany(Beer, {
+      through: {
+        model: ScreenBeer,
+        unique: false,
+      },
+      foreignKey: 'screenId',
+      constraints: false,
+      as: 'beerList',
+    });
+  };
+
   return Screen;
 };
