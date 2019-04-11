@@ -14,5 +14,6 @@ module.exports = app => {
 
   // Screen
   router.get('/screen/list', controller.screen.list);
-  router.put('/screen/update', controller.screen.update);
+  router.post('/screen/addBeer', controller.screen.addBeer);
+  router.delete('/screen/removeBeer', controller.screen.removeBeer);
 };
