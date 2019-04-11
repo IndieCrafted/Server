@@ -3,12 +3,6 @@
 const { Controller } = require('egg');
 
 class BeerController extends Controller {
-  async index() {
-    const { ctx } = this;
-    const res = await ctx.model.Beer.findAll();
-    ctx.body = res;
-  }
-
   async list() {
     const { ctx } = this;
     const queryRule = {
