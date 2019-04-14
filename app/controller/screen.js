@@ -6,7 +6,7 @@ class ScreenController extends Controller {
   async list() {
     const { ctx } = this;
     const queryRule = {
-      id: { type: 'int', min: 1 },
+      id: { type: 'int', min: 1, required: false },
     };
     ctx.validate(queryRule, ctx.query);
     const data = await ctx.service.screen.list(ctx.query);

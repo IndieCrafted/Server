@@ -5,11 +5,12 @@ const { Service } = require('egg');
 class ScreenService extends Service {
   async list(params) {
     const { ctx } = this;
-    const { id } = params;
-    const result = await ctx.model.Screen.findOne({
-      where: {
-        id,
-      },
+    const where = {};
+    if (params.id) {
+      where.id = params.id;
+    }
+    const result = await ctx.model.Screen.findAll({
+      where,
       include: [
         {
           model: ctx.model.Beer,
