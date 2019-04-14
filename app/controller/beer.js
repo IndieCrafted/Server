@@ -52,14 +52,13 @@ class BeerController extends Controller {
     ctx.helper.success({ ctx, data });
   }
 
-  async updateStatus() {
+  async deleteBeer() {
     const { ctx } = this;
     const bodyRule = {
       id: 'int',
-      nextStatus: { type: 'enum', values: [ 0, 1 ] },
     };
     ctx.validate(bodyRule, ctx.request.body);
-    const data = await ctx.service.beer.updateStatus(ctx.request.body);
+    const data = await ctx.service.beer.destroy(ctx.request.body);
     ctx.helper.success({ ctx, data });
   }
 }

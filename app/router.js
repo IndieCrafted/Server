@@ -10,7 +10,7 @@ module.exports = app => {
   router.get('/beer/list', controller.beer.list);
   router.post('/beer/create', controller.beer.create);
   router.put('/beer/update', controller.beer.update);
-  router.put('/beer/updateStatus', controller.beer.updateStatus);
+  router.delete('/beer/delete', controller.beer.deleteBeer);
 
   // Screen
   router.get('/screen/list', controller.screen.list);

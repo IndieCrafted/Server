@@ -57,7 +57,7 @@ class BeerService extends Service {
     return result;
   }
 
-  async updateStatus(params) {
+  async destroy(params) {
     const { ctx } = this;
     const item = await ctx.model.Beer.findOne({
       where: {
@@ -67,8 +67,11 @@ class BeerService extends Service {
     if (!item) {
       ctx.throw(400, '记录不存在', { code: 1 });
     }
-    const result = await item.update({
-      status: params.nextStatus,
+    const result = await item.destroy();
+    await ctx.model.ScreenBeer.destroy({
+      where: {
+        beerId: params.id,
+      },
     });
     return result;
   }
